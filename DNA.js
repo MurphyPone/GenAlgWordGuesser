@@ -2,6 +2,7 @@
 // The Nature of Code
 // Daniel Shiffman
 // http://natureofcode.com
+//add me to index pls
 
 function newChar() {
   let c = floor(random(63, 123));

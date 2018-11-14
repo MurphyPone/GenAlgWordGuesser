@@ -27,7 +27,7 @@ function setup() {
   stats.class("stats");
 
   //createCanvas(640, 360);
-  target = "catastrophize";
+  target = "catastrophize"; //TODO pull from flaskDemo
   popmax = 200;
   mutationRate = 0.01;
 

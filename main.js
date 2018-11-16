@@ -16,9 +16,9 @@ let stats;
 function setWord(data) {
   console.log(data)
   for(var i = 0; i < data.length; i++) {
-    console.log(word[i])
+    console.log(data[i])
   }
-  target = word[0]; // this won't work, but placeholder
+  target = data[0]; // this won't work, but placeholder
 }
 
 function setup() {

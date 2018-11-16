@@ -22,9 +22,9 @@ function setWord(data) {
 }
 
 function setup() {
-  var server_url = "http://0.0.0.0:8000/receiver";
-  //loadStrings(server_url, setWord);
-  target = "Lend me your ears";
+  var server_url = "https://learn-the-wotd.herokuapp.com/receiver";
+  loadStrings(server_url, setWord);
+  //target = "Lend me your ears";
 
   bestPhrase = createP("Best phrase:");
   //bestPhrase.position(10,10);

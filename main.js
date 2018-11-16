@@ -13,7 +13,19 @@ let bestPhrase;
 let allPhrases;
 let stats;
 
+function setWord(data) {
+  console.log(data)
+  for(var i = 0; i < data.length; i++) {
+    console.log(word[i])
+  }
+  target = word[0]; // this won't work, but placeholder
+}
+
 function setup() {
+  var server_url = "http://0.0.0.0:8000/receiver";
+  //loadStrings(server_url, setWord);
+  target = "Lend me your ears";
+
   bestPhrase = createP("Best phrase:");
   //bestPhrase.position(10,10);
   bestPhrase.class("best");
@@ -27,7 +39,7 @@ function setup() {
   stats.class("stats");
 
   //createCanvas(640, 360);
-  target = "catastrophize"; //TODO pull from flaskDemo
+  //target = "catastrophize"; //TODO pull from flaskDemo
   popmax = 200;
   mutationRate = 0.01;
 

@@ -12,22 +12,22 @@ let population;
 let bestPhrase;
 let allPhrases;
 let stats;
+var waitt = 0;
 
 function setWord(data) {
-  console.log(data)
-  for(var i = 0; i < data.length; i++) {
-    console.log(data[i])
-  }
-  target = data[0]; // this won't work, but placeholder
+  target = data[0].substring(data[0].indexOf('>')+1, data[0].indexOf('<',2));
+
+  popmax = 200;
+  mutationRate = 0.01;
+  population = new Population(target, mutationRate, popmax);
+  waitt = 1;
 }
 
 function setup() {
-  var server_url = "https://learn-the-wotd.herokuapp.com/receiver";
+  var server_url = "https://learn-the-wotd.herokuapp.com/test";
   loadStrings(server_url, setWord);
-  //target = "Lend me your ears";
 
   bestPhrase = createP("Best phrase:");
-  //bestPhrase.position(10,10);
   bestPhrase.class("best");
 
   allPhrases = createP("All phrases:");
@@ -35,35 +35,30 @@ function setup() {
   allPhrases.class("all");
 
   stats = createP("Stats");
-  //stats.position(10,200);
   stats.class("stats");
-
-  //createCanvas(640, 360);
-  //target = "catastrophize"; //TODO pull from flaskDemo
-  popmax = 200;
-  mutationRate = 0.01;
-
-  // Create a population with a target phrase, mutation rate, and population max
-  population = new Population(target, mutationRate, popmax);
 }
 
 function draw() {
-  // Generate mating pool
-  population.naturalSelection();
-  //Create next generation
-  population.generate();
-  // Calculate fitness
-  population.calcFitness();
+  if (waitt == 1) {
+    // Generate mating pool
+    population.naturalSelection();
+    //Create next generation
+    population.generate();
+    // Calculate fitness
+    population.calcFitness();
 
-  population.evaluate();
+    population.evaluate();
 
-  // If we found the target phrase, stop
-  if (population.isFinished()) {
-    //println(millis()/1000.0);
-    noLoop();
+    // If we found the target phrase, stop
+    if (population.isFinished()) {
+      //println(millis()/1000.0);
+      noLoop();
+    }
+
+    displayInfo();
+  } else {
+    //console.log("waiting ");
   }
-
-  displayInfo();
 }
 
 function displayInfo() {
